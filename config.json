@@ -36,7 +36,7 @@
         "id": "boid_separation",
         "label": "Boid Separation Influence",
         "type": "range",
-        "default": 0.2,
+        "default": 0.05,
         "attrs": {
             "min": 0,
             "max": 1,
@@ -47,7 +47,7 @@
         "id": "boid_alignment",
         "label": "Boid Alignment Influence",
         "type": "range",
-        "default": 0.2,
+        "default": 0.3,
         "attrs": {
             "min": 0,
             "max": 1,
@@ -58,7 +58,7 @@
         "id": "boid_cohesion",
         "label": "Boid Cohesion Influence",
         "type": "range",
-        "default": 0.2,
+        "default": 0.6,
         "attrs": {
             "min": 0,
             "max": 1,
