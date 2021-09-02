@@ -25,7 +25,7 @@
         "id": "boid_speed",
         "label": "Boid Speed",
         "type": "range",
-        "default": 0.0005,
+        "default": 0.0003,
         "attrs": {
             "min": 0.0001,
             "max": 0.001,
