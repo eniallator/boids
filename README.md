@@ -1,3 +1,3 @@
-# Web-Animation-Template
+# Boids
 
-My template repository for creating web animations
+Boids algorithm implemented using Javascript and the HTML canvas
