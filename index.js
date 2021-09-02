@@ -17,7 +17,7 @@ window.onresize();
 ctx.fillStyle = "black";
 ctx.strokeStyle = "white";
 
-const boids = [];
+let boids = [];
 
 function update(dt) {
   for (let boid of boids) {
@@ -56,9 +56,22 @@ function run() {
 }
 
 function init() {
-  for (let i = 0; i < paramConfig.getVal("num_boids"); i++) {
-    boids.push(Boid.newRandom());
-  }
+  paramConfig.addListener(
+    (state) => {
+      const numBoids = state["num_boids"];
+      if (boids.length === numBoids) return;
+      if (boids.length > numBoids) {
+        boids = boids.slice(boids.length - numBoids);
+      } else {
+        for (let i = boids.length; i < numBoids; i++) {
+          boids.push(Boid.newRandom());
+        }
+      }
+    },
+    ["num_boids"]
+  );
+
+  paramConfig.tellListeners(true);
   run();
 }
 
