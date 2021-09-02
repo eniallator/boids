@@ -1,3 +1,5 @@
+const BOID_IMAGE = document.querySelector("img#boid");
+
 class Boid {
   static nextId = 0;
 
@@ -99,6 +101,20 @@ class Boid {
   }
 
   draw(ctx, width, height) {
-    ctx.fillRect(this.pos.x * width - 5, this.pos.y * height - 5, 10, 10);
+    const imgHeight = 30;
+    const imgWidth = (BOID_IMAGE.width / BOID_IMAGE.height) * imgHeight;
+    // ctx.fillRect(this.pos.x * width - 5, this.pos.y * height - 5, 10, 10);
+    const direction = this.dirNorm.getAngle() + Math.PI / 2;
+    ctx.translate(this.pos.x * width, this.pos.y * height);
+    ctx.rotate(direction);
+    ctx.drawImage(
+      BOID_IMAGE,
+      -imgWidth / 2,
+      -imgHeight / 2,
+      imgWidth,
+      imgHeight
+    );
+    ctx.rotate(-direction);
+    ctx.translate(-this.pos.x * width, -this.pos.y * height);
   }
 }
