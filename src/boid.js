@@ -63,7 +63,8 @@ class Boid {
     otherDetectRadius,
     separation,
     alignment,
-    cohesion
+    cohesion,
+    aspectRatio = 1
   ) {
     const accelerationVec = this.#getBoundaryAccelerationVec(wallDetectRadius);
 
@@ -97,7 +98,12 @@ class Boid {
     }
 
     this.dirNorm.add(accelerationVec).normalise();
-    this.pos.add(this.dirNorm.copy().multiply(dt * speed));
+    this.pos.add(
+      this.dirNorm
+        .copy()
+        .multiply(dt * speed)
+        .multiply(new Vector(1, aspectRatio).normalise())
+    );
   }
 
   draw(ctx, width, height) {

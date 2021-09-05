@@ -29,7 +29,8 @@ function update(dt) {
       paramConfig.getVal("other_boid_detection_radius"),
       paramConfig.getVal("boid_separation"),
       paramConfig.getVal("boid_alignment"),
-      paramConfig.getVal("boid_cohesion")
+      paramConfig.getVal("boid_cohesion"),
+      canvas.width / canvas.height
     );
   }
 }
