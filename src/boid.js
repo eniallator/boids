@@ -109,8 +109,7 @@ class Boid {
     this.pos.add(
       this.dirNorm
         .copy()
-        .multiply(dt * speed)
-        .multiply(new Vector(1, aspectRatio).normalise())
+        .multiply(dt * speed, new Vector(1, aspectRatio).normalise())
     );
   }
 
