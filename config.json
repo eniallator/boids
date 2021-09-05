@@ -74,5 +74,16 @@
             "max": 1,
             "step": 0.05
         }
+    },
+    {
+        "id": "boid_mouse_influence",
+        "label": "Boid Mouse Click Influence",
+        "type": "range",
+        "default": 0.5,
+        "attrs": {
+            "min": 0,
+            "max": 1,
+            "step": 0.05
+        }
     }
 ]

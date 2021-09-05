@@ -64,9 +64,17 @@ class Boid {
     separation,
     alignment,
     cohesion,
-    aspectRatio = 1
+    mouseInfluence,
+    aspectRatio,
+    target
   ) {
     const accelerationVec = this.#getBoundaryAccelerationVec(wallDetectRadius);
+
+    if (target) {
+      accelerationVec.add(
+        target.copy().sub(this.pos).normalise().multiply(mouseInfluence)
+      );
+    }
 
     const otherDetectRadiusSqr = otherDetectRadius * otherDetectRadius;
     const boidsInRange = boids.filter(

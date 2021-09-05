@@ -17,6 +17,32 @@ window.onresize();
 ctx.fillStyle = "black";
 ctx.strokeStyle = "white";
 
+const mouse = {
+  down: false,
+  clicked: false,
+  pos: Vector.ZERO.copy(),
+};
+canvas.onmousemove = (ev) => {
+  mouse.pos.setHead(ev.clientX / canvas.width, ev.clientY / canvas.height);
+};
+canvas.ontouchmove = (ev) => {
+  mouse.pos.setHead(
+    ev.touches[0].clientX / canvas.width,
+    ev.touches[0].clientY / canvas.height
+  );
+};
+canvas.onmousedown = canvas.ontouchstart = (ev) => {
+  mouse.clicked = mouse.down === false;
+  mouse.down = true;
+  if (!isNaN(ev.clientX) && !isNaN(ev.clientY)) {
+    mouse.pos.setHead(ev.clientX / canvas.width, ev.clientY / canvas.height);
+  }
+};
+canvas.onmouseup = canvas.ontouchend = () => {
+  mouse.clicked = false;
+  mouse.down = false;
+};
+
 let boids = [];
 
 function update(dt) {
@@ -30,7 +56,9 @@ function update(dt) {
       paramConfig.getVal("boid_separation"),
       paramConfig.getVal("boid_alignment"),
       paramConfig.getVal("boid_cohesion"),
-      canvas.width / canvas.height
+      paramConfig.getVal("boid_mouse_influence"),
+      canvas.width / canvas.height,
+      mouse.down ? mouse.pos : null
     );
   }
 }
